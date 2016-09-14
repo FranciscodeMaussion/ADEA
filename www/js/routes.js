@@ -14,7 +14,7 @@ angular.module('app.routes', [])
     url: '/inventory',
     views: {
       'tab1': {
-        templateUrl: 'templates/inventario.html',
+        templateUrl: 'templates/catInventory.html',
         controller: 'inventarioCtrl'
       }
     }
@@ -42,6 +42,16 @@ angular.module('app.routes', [])
       'tab1': {
         templateUrl: 'templates/aAdirAlInventario.html',
         controller: 'aAdirAlInventarioCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.particularInv', {
+    url: '/inventory:catId',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/inventario.html',
+        controller: 'particularCtrl'
       }
     }
   })

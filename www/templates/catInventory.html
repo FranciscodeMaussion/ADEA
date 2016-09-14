@@ -1,0 +1,10 @@
+<ion-view style="" id="page2" title="Inventario">
+    <ion-content class="has-header" padding="true">
+        <ion-list id="inventario-list1">
+          <ion-item ng-repeat="cat in categorias" ng-click="goToInv(cat.id)">{{cat.nombre}}</ion-item>
+        </ion-list>
+        <div style="margin-right:-20px;">
+          <a class="button button-balanced  button-full button-clear" style="left:-10px;" id="inventario-button1" ui-sref="tabsController.aAdirAlInventario">Nuevo Elemento</a>
+        </div>
+    </ion-content>
+</ion-view>
