@@ -1,0 +1,36 @@
+<ion-view style="" id="page5" title="{{action}} Elemento">
+    <ion-content class="has-header" padding="true">
+        <form class="list" id="aAdirAlInventario-form1">
+            <label id="aAdirAlInventario-select1" class="item item-select">
+                <span class="input-label">Categoria</span>
+                <select ng-options="categoria.nombre for categoria in categorias track by categoria.id" ng-model="inv.cat">
+                </select>
+            </label>
+            <label id="aAdirAlInventario-input1" class="item item-input">
+                <span class="input-label">Item</span>
+                <input placeholder="" type="text" ng-model="inv.item">
+            </label>
+            <label id="aAdirAlInventario-input8" class="item item-input">
+                <span class="input-label">Estado</span>
+                <input placeholder="" type="text" ng-model="inv.state">
+            </label>
+            <label id="aAdirAlInventario-input2" class="item item-input">
+                <span class="input-label">Cantidad</span>
+                <input placeholder="" type="number" ng-model="inv.cant">
+            </label>
+            <label id="aAdirAlInventario-input4" class="item item-input">
+                <span class="input-label">Valor Nuevo</span>
+                <input placeholder="" type="number" ng-model="inv.valnew">
+            </label>
+            <label id="aAdirAlInventario-input7" class="item item-input">
+                <span class="input-label">Vida Útil</span>
+                <input placeholder="" type="number" ng-model="inv.life">
+            </label>
+            <label id="aAdirAlInventario-input3" class="item item-input">
+                <span class="input-label">Fecha de Compra</span>
+                <input placeholder="" type="month" ng-model="inv.bought">
+            </label>
+            <button class="button button-balanced  button-block button-outline" id="aAdirAlInventario-button2" ng-click="sendToStorage()">{{action}}</button>
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view style="" id="page6" title="Informacion">
+    <ion-content class="has-header" padding="true">
+      <div class="list card">
+        <div class="item" style="text-align:center;">
+          <h2>Item: {{item.item}}</h2>
+          <p>Comprado: {{item.bought | date :  "MM-y" }}</p>
+          {{item.cat.nombre}}
+        </div>
+
+        <div class="item item-body">
+          <p>
+            Estado: {{item.state}}.<br>
+            Cantidad: {{item.cant}}.<br>
+            Valor Nuevo: {{item.valnew}}.<br>
+            Vida Util: {{item.life}} años.<br>
+            DFP: {{calculados.dfp}}.<br>
+            Valor Residual: {{calculados.vr}}.<br>
+            VRACI: {{calculados.vraci}}.<br>
+            CAD: {{calculados.cad}}.<br>
+          </p>
+        </div>
+        <div class="row">
+          <a class="button button-balanced button-clear col col-50" ng-click="modify()">Modificar</a>
+          <a class="button button-assertive button-clear col col-50" ng-click="delete()">Eliminar</a>
+        </div>
+      </div>
+    </ion-content>
+</ion-view>
