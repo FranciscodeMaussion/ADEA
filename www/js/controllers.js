@@ -57,6 +57,7 @@ angular.module('app.controllers', [])
         items.push($scope.inv);
     }catch(TypeError){
         items = [];
+        $scope.inv.id = 0;
         items.push($scope.inv);
     }
     window.localStorage.setItem("inv-item", JSON.stringify(items));
