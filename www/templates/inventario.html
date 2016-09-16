@@ -1,7 +1,11 @@
 <ion-view style="" id="page2" title="Inventario ">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon icon ion-ios-compose" ui-sref="tabsController.aAdirAlInventario"></button>
+  </ion-nav-buttons>
     <ion-content class="has-header" padding="true">
         <ion-list id="inventario-list1">
-          <ion-item ng-repeat="item in invElements" style="" id="inventario-list-item3" ng-click="goTo(item.id)">{{item.item}}</ion-item>
+          <ion-item ng-if="invElements.length == 0" style="" >No hay ningun item.</ion-item>
+          <ion-item ng-repeat="item in invElements" style="" ng-click="goTo(item.id)">{{item.item}}</ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

@@ -13,6 +13,9 @@ angular.module('app.controllers', [])
       {'id': 8,'nombre':'Pasturas Anuales','valor':-1},
       {'id': 9,'nombre':'Cultivos Anuales','valor':-1}
     ];
+    $scope.$on('$ionicView.beforeEnter', function () {
+      $rootScope.categorySelected = {'id': 0,'nombre':'Mejoras','valor':5};
+    });
     $scope.goToInv = function(catId){
         $state.go('tabsController.particularInv', {catId: catId})
     }
@@ -23,8 +26,9 @@ angular.module('app.controllers', [])
 
 }])
 
-.controller('particularCtrl', ['$scope', '$stateParams', '$state', function ($scope, $stateParams, $state) {
+.controller('particularCtrl', ['$scope', '$stateParams', '$state', '$rootScope', function ($scope, $stateParams, $state, $rootScope) {
   $scope.$on('$ionicView.beforeEnter', function () {
+    $rootScope.categorySelected = $rootScope.categorias.filter(function (items) {return items.id == $stateParams.catId;})[0];
     helper = JSON.parse(window.localStorage.getItem("inv-item"));
     $scope.invElements = helper.filter(function (item) {return item.cat.id === parseInt($stateParams.catId);});
   });
@@ -44,7 +48,7 @@ angular.module('app.controllers', [])
     'valnew' : '',
     'life' : '',
     'bought' : '',
-    'cat': {'id': 0,'nombre':'Mejoras','valor':5}
+    'cat': $rootScope.categorySelected
   }
   $scope.sendToStorage = function() {
     var items;
@@ -69,7 +73,7 @@ angular.module('app.controllers', [])
       'valnew' : '',
       'life' : '',
       'bought' : '',
-      'cat': {'id': 0,'nombre':'Mejoras','valor':5}
+      'cat': $rootScope.categorySelected
     }
   }
 }])
