@@ -2,19 +2,20 @@ angular.module('app.controllers', [])
 
 .controller('inventarioCtrl', ['$scope', '$stateParams', '$state', '$rootScope', function ($scope, $stateParams, $state, $rootScope) {
     $rootScope.categorias = [
-      {'id': 0,'nombre':'Mejoras','valor':5},
-      {'id': 1,'nombre':'Tractores, Maquinarias y Rodados','valor':10},
-      {'id': 2,'nombre':'Pasturas Perennes','valor':1},
-      {'id': 3,'nombre':'Reproductores y Animales de Trabajo','valor':10},
-      {'id': 4,'nombre':'Deposito','valor':0},
-      {'id': 5,'nombre':'Granos Almacenados','valor':0},
-      {'id': 6,'nombre':'Ganado Circulante','valor':0},
-      {'id': 7,'nombre':'Ganado de Renta','valor':0},
-      {'id': 8,'nombre':'Pasturas Anuales','valor':-1},
-      {'id': 9,'nombre':'Cultivos Anuales','valor':-1}
+      {'id': 0,'nombre':'Tierras','valor':-1},// Cantidad de HAS, precio unitario y precio total nada mas
+      {'id': 1,'nombre':'Mejoras','valor':5},// defecto
+      {'id': 2,'nombre':'Tractores, Maquinarias y Rodados','valor':10}, //defecto
+      {'id': 3,'nombre':'Pasturas Perennes','valor':1},// valor unitario, superficie, calculado costo total, año implantacion,
+      {'id': 4,'nombre':'Reproductores y Animales de Trabajo','valor':10}, // sin estado, valor nuevo por valor unitario, nuevo calculado total
+      {'id': 5,'nombre':'Deposito','valor':0},
+      {'id': 6,'nombre':'Granos Almacenados','valor':0},
+      {'id': 7,'nombre':'Ganado Circulante','valor':0},
+      {'id': 8,'nombre':'Ganado de Renta','valor':0},
+      {'id': 9,'nombre':'Pasturas Anuales','valor':-1},
+      {'id': 10,'nombre':'Cultivos Anuales','valor':-1}
     ];
     $scope.$on('$ionicView.beforeEnter', function () {
-      $rootScope.categorySelected = {'id': 0,'nombre':'Mejoras','valor':5};
+      $rootScope.categorySelected = $rootScope.categorias[0];
     });
     $scope.goToInv = function(catId){
         $state.go('tabsController.particularInv', {catId: catId})
