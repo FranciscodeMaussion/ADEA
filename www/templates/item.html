@@ -2,22 +2,13 @@
     <ion-content class="has-header" padding="true">
       <div class="list card">
         <div class="item" style="text-align:center;">
-          <h2>Item: {{item.item}}</h2>
-          <p>Comprado: {{item.bought | date :  "MM-y" }}</p>
-          {{item.cat.nombre}}
+          <h2>Item: {{name}}</h2>
+          {{categorySelected.nombre}}
         </div>
 
         <div class="item item-body">
-          <p>
-            Estado: {{item.state}}.<br>
-            Cantidad: {{item.cant}}.<br>
-            Valor Nuevo: {{item.valnew}}.<br>
-            Vida Util: {{item.life}} años.<br>
-            DFP: {{calculados.dfp}}.<br>
-            Valor Residual: {{calculados.vr}}.<br>
-            VRACI: {{calculados.vraci}}.<br>
-            CAD: {{calculados.cad}}.<br>
-          </p>
+          <p ng-repeat="help in item">{{help.key | capitalize}}: {{help.value}}</p>
+          <p ng-repeat="(key, value) in calculados">{{key | uppercase}}: {{value}}</p>
         </div>
         <div class="row">
           <a class="button button-balanced button-clear col col-50" ng-click="modify()">Modificar</a>

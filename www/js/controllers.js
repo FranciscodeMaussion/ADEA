@@ -2,17 +2,51 @@ angular.module('app.controllers', [])
 
 .controller('inventarioCtrl', ['$scope', '$stateParams', '$state', '$rootScope', function ($scope, $stateParams, $state, $rootScope) {
     $rootScope.categorias = [
-      {'id': 0,'nombre':'Tierras','valor':-1, 'do':'T'},// Tierras
-      {'id': 1,'nombre':'Mejoras','valor':5, 'do':'V'},// con vraci
-      {'id': 2,'nombre':'Tractores, Maquinarias y Rodados','valor':10, 'do':'V'}, // con vraci
-      {'id': 3,'nombre':'Pasturas Perennes','valor':1, 'do':'A'},// con vraci
-      {'id': 4,'nombre':'Reproductores y Animales de Trabajo','valor':10, 'do':'V'}, // con vraci
-      {'id': 5,'nombre':'Deposito','valor':0, 'do':'CyF'}, // sin vraci
-      {'id': 6,'nombre':'Granos Almacenados','valor':0, 'do':'CyF'},// sin vraci
-      {'id': 7,'nombre':'Ganado Circulante','valor':0, 'do':'CyF'},// sin vraci
-      {'id': 8,'nombre':'Ganado de Renta','valor':0, 'do':'CyF'},// sin vraci
-      {'id': 9,'nombre':'Pasturas Anuales','valor':-1, 'do':'CyF'},// sin vraci
-      {'id': 10,'nombre':'Cultivos Anuales','valor':-1, 'do':'CyF'}// sin vraci
+      {'id': 0,'nombre':'Tierras','valor':-1, 'do':'0','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Nombre'}},{key:'cantidad',type: 'inline-input',templateOptions:{type: 'number',label: 'Cantidad de Hectáreas'}},{key:'precio',type: 'inline-input',templateOptions:{type: 'number',label: 'Precio por Hectárea'}}]},// Tierras
+      {'id': 1,'nombre':'Mejoras','valor':5, 'do':'1','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'estado',type: 'inline-input',templateOptions: {type: 'text',label: 'Estado'}},{key:'cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad'}},{key:'nuevo',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Nuevo'}},{key:'comprado',type: 'inline-input',templateOptions: {type: 'month',label: 'Año de Compra'}},{key:'vida',type: 'inline-input',templateOptions: {type: 'number',label: 'Vida Util'}},]},// con vraci
+      {'id': 2,'nombre':'Tractores, Maquinarias y Rodados','valor':10, 'do':'1','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'estado',type: 'inline-input',templateOptions: {type: 'text',label: 'Estado'}},{key:'cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad'}},{key:'nuevo',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Nuevo'}},{key:'comprado',type: 'inline-input',templateOptions: {type: 'month',label: 'Año de Compra'}},{key:'vida',type: 'inline-input',templateOptions: {type: 'number',label: 'Vida Util'}},]}, // con vraci
+      {'id': 3,'nombre':'Pasturas Perennes','valor':1, 'do':'2','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Tipo de Pastura'}},{key:'precio',type: 'inline-input',templateOptions: {type: 'number',label: 'Costo por Hectárea'}},{key:'cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Superficie'}},{key:'implantado',type: 'inline-input',templateOptions: {type: 'month',label: 'Año de implantacion'}},{key:'vida',type: 'inline-input',templateOptions: {type: 'number',label: 'Vida Útil'}}]},// con vraci
+      {'id': 4,'nombre':'Reproductores y Animales de Trabajo','valor':10, 'do':'3','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad'}},{key:'precio',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},{key:'comprado',type: 'inline-input',templateOptions: {type: 'month',label: 'Año de Compra'}},{key:'vida',type: 'inline-input',templateOptions: {type: 'number',label: 'Vida Util'}}]}, // con vraci
+      {'id': 5,'nombre':'Deposito','valor':0, 'do':'4','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'c-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Inicio'}},{key:'c-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},{key:'f-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Finalizar'}},{key:'f-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},]}, // sin vraci
+      {'id': 6,'nombre':'Granos Almacenados','valor':0, 'do':'4','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'c-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Inicio'}},{key:'c-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},{key:'f-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Finalizar'}},{key:'f-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},]},// sin vraci
+      {'id': 7,'nombre':'Ganado Circulante','valor':0, 'do':'4','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'c-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Inicio'}},{key:'c-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},{key:'f-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Finalizar'}},{key:'f-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},]},// sin vraci
+      {'id': 8,'nombre':'Ganado de Renta','valor':0, 'do':'4','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Item'}},{key:'c-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Inicio'}},{key:'c-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},{key:'f-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Cantidad al Finalizar'}},{key:'f-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Valor Unitario'}},]},// sin vraci
+      {'id': 9,'nombre':'Pasturas Anuales','valor':-1, 'do':'4','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Cultivo'}},{key:'lote',type: 'inline-input',templateOptions: {type: 'text',label: 'Lote'}},{key:'c-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Superficie al Inicio'}},{key:'c-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Costo por Hectárea'}},{key:'f-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Superficie al Finalizar'}},{key:'f-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Costo por Hectárea'}},]},// sin vraci
+      {'id': 10,'nombre':'Cultivos Anuales','valor':-1, 'do':'4','fields':[{key:'item',type: 'inline-input',templateOptions:{type: 'text',label: 'Cultivo'}},{key:'lote',type: 'inline-input',templateOptions: {type: 'text',label: 'Lote'}},{key:'c-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Superficie al Inicio'}},{key:'c-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Costo por Hectárea'}},{key:'f-cantidad',type: 'inline-input',templateOptions: {type: 'number',label: 'Superficie al Finalizar'}},{key:'f-valor-unitario',type: 'inline-input',templateOptions: {type: 'number',label: 'Costo por Hectárea'}},]}// sin vraci
+    ];
+    $rootScope.coders = [
+      // A
+      {
+        'total':"calcItem.cantidad * calcItem.precio;"
+      },
+      // B
+      {
+        'dfp':"calcItem.vida-(hoy-year);",
+        'monto':"($rootScope.categorySelected.valor * calcItem.nuevo)/100;",
+        'vraci':"((calcItem.nuevo - calculado.monto)*calculado.dfp/calcItem.vida + calculado.monto)*calcItem.cantidad;",
+        'cad':"(calculado.vraci - calculado.monto)/calculado.dfp;",
+      },
+      // C
+      {
+        'total':"calcItem.cantidad * calcItem.precio;",
+        'dfp':"calcItem.vida-(hoy-year);",
+        'vraci':"(calculado.total * calculado.dfp)/calcItem.vida;",
+        'cad':"calculado.vraci/calculado.dfp",
+      },
+      // D
+      {
+        'total':"calcItem.cantidad * calcItem.precio;",
+        'dfp':"calcItem.vida-(hoy-year);",
+        'monto':"($rootScope.categorySelected.valor * calcItem.precio)/100;",
+        'vraci':"calcItem.precio - calculado.monto)*calculado.dfp/calcItem.vida + calculado.monto;",
+        'cad':"(calculado.vraci - calculado.monto)/calculado.dfp;",
+      },
+      // E
+      {
+        'c-total':"calcItem.c-cantidad * calcItem.c-precio;",
+        'f-total':"calcItem.f-cantidad * calcItem.f-precio;",
+        'diferencia':"calculado.c-total + calculado.f-total;",
+      }
     ];
     $scope.$on('$ionicView.beforeEnter', function () {
       $rootScope.categorySelected = $rootScope.categorias[0];
@@ -31,7 +65,8 @@ angular.module('app.controllers', [])
   $scope.$on('$ionicView.beforeEnter', function () {
     $rootScope.categorySelected = $rootScope.categorias.filter(function (items) {return items.id == $stateParams.catId;})[0];
     helper = JSON.parse(window.localStorage.getItem("inv-item"));
-    $scope.invElements = helper.filter(function (item) {return item.cat.id === parseInt($stateParams.catId);});
+    console.log(helper);
+    $scope.invElements = helper.filter(function (item) {return item.cat === parseInt($stateParams.catId);});
   });
   $scope.goTo = function(itemId){
       $state.go('tabsController.item', {itemId: itemId})
@@ -43,20 +78,16 @@ angular.module('app.controllers', [])
   $scope.action='Añadir';
   $scope.inv = {
     'id' : 0,
-    'item' : '',
-    'state' : '',
-    'cant' : '',
-    'valnew' : '',
-    'life' : '',
-    'bought' : '',
     'cat': $rootScope.categorySelected
   }
+  $scope.invFields = $rootScope.categorySelected.fields;
   $scope.sendToStorage = function() {
     var items;
     var aux = window.localStorage.getItem("inv-item");
     if( aux !== undefined){
       items = JSON.parse(aux);
     }
+    $scope.inv.cat = $scope.inv.cat.id
     try{
         $scope.inv.id = items[items.length-1].id+1;
         items.push($scope.inv);
@@ -68,91 +99,37 @@ angular.module('app.controllers', [])
     window.localStorage.setItem("inv-item", JSON.stringify(items));
     $scope.inv = {
       'id' : 0,
-      'item' : '',
-      'state' : '',
-      'cant' : '',
-      'valnew' : '',
-      'life' : '',
-      'bought' : '',
       'cat': $rootScope.categorySelected
     }
   }
 }])
 
-.controller('itemCtrl', ['$scope', '$stateParams', '$state', '$ionicHistory', function ($scope, $stateParams, $state, $ionicHistory) {
+.controller('itemCtrl', ['$scope', '$stateParams', '$state', '$ionicHistory','$rootScope', function ($scope, $stateParams, $state, $ionicHistory, $rootScope) {
   $scope.$on('$ionicView.beforeEnter', function () {
     $scope.aux = JSON.parse(window.localStorage.getItem("inv-item"))
-    $scope.item = $scope.aux.filter(function (items) {return items.id == $stateParams.itemId;})[0];
-    $scope.item.bought = new Date($scope.item.bought);
-    var a = $scope.item;
-    var hoy = new Date().getFullYear();
-    var year = a.bought.getFullYear();
-    var cat = JSON.parse(a.cat);
-    if (a.cat.do == 'V'){
-      var dfp = a.life - ( hoy - year );
-      var vr = (a.cat.valor*a.valnew)/100
-      if (dfp < 0){
-        dfp = 0;
-      }
-      var vraci;
-      var cad;
-      if (dfp !== 0){
-        vraci = ((a.valnew - vr)*dfp/a.life +vr)* a.cant;
-        cad = (vraci-vr)/dfp
-      }else{
-        vraci = vr;
-        cad = 0;
-      }
-      $scope.calculados = {
-        'dfp': dfp,
-        'vr': vr,
-        'vraci': vraci,
-        'cad': cad,
-      };
-      if (a.cat.id == 4){
-        $scope.calculados = {
-          'dfp': dfp,
-          'vr': vr,
-          'vraci': vraci,
-          'cad': cad,
-          'tot':a.new*a.cant
-        };
-      }
-    }else if (a.cat.do == 'T') {
-      $scope.calculados = {
-        'tot': a.cant*a.prec,
-      };
-    }else if (a.cat.do == 'A') {
-      var dfp = a.life - ( hoy - year );
-      if (dfp < 0){
-        dfp = 0;
-      }
-      var vraci;
-      var cad;
-      var tot = a.cost*a.sup
-      if (dfp !== 0){
-        vraci = (tot*dfp)/a.life;
-        cad = vraci/dfp
-      }else{
-        vraci = 0;
-        cad = 0;
-      }
-      $scope.calculados = {
-        'dfp': dfp,
-        'tot': tot,
-        'vraci': vraci,
-        'cad': cad,
-      };
-    }else if (a.cat.do == 'CyF') {
-      var tot1 = a.cant1*a.new1
-      var tot2 = a.cant2*a.new2
-      $scope.calculados = {
-        'tot1': tot1,
-        'tot2': tot2,
-        'totfin': tot2-tot1,
-      };
+    var myDictionary = $scope.aux.filter(function (items) {return items.id == $stateParams.itemId;})[0];
+    $scope.name = myDictionary.item;
+    $scope.item = [];
+    Object.keys(myDictionary).forEach(key => {
+        if (key!='id' && key!='cat' && key!='item'){
+            var value = myDictionary[key];
+            console.log(key+" : "+value);
+            $scope.item.push({'key':key,'value':value});
+        }
+    });
+    if ("comprado" in myDictionary){
+      myDictionary.comprado = new Date(myDictionary.comprado);
+      var year = myDictionary.comprado.getFullYear();
     }
-
+    var calcItem = myDictionary ;
+    var calculado = {};
+    var hoy = new Date().getFullYear();
+    var code = $rootScope.coders[$rootScope.categorySelected.do];
+    Object.keys(code).forEach(key => {
+      var value = code[key];
+      calculado[key] = eval(value);
+    });
+    $scope.calculados = calculado;
   });
   $scope.modify = function(){
     $state.go('tabsController.modItem', {modItem: $stateParams.itemId})
@@ -166,9 +143,12 @@ angular.module('app.controllers', [])
 }])
 .controller('itemModCtrl', ['$scope', '$stateParams', '$state', '$rootScope', function ($scope, $stateParams, $state, $rootScope) {
   $scope.$on('$ionicView.beforeEnter', function () {
+    $scope.invFields = $rootScope.categorySelected.fields;
     $scope.aux = JSON.parse(window.localStorage.getItem("inv-item"));
     $scope.inv = $scope.aux.filter(function (item) {return item.id == parseInt($stateParams.modItem);})[0];
-    $scope.inv.bought = new Date($scope.inv.bought);
+    if ("comprado" in $scope.inv){
+      $scope.inv.comprado = new Date($scope.inv.comprado);
+    }
     $scope.action="Modificar";
   });
 
@@ -178,3 +158,8 @@ angular.module('app.controllers', [])
     $state.go('tabsController.item', {itemId: $stateParams.modItem})
   }
 }])
+.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+})
