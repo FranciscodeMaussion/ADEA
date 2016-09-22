@@ -7,6 +7,10 @@
           <ion-item ng-if="invElements.length == 0" style="" >No hay ningun item.</ion-item>
           <ion-item ng-repeat="item in invElements" style="" ng-click="goTo(item.id)">{{item.item}}</ion-item>
         </ion-list>
+        <ion-list id="inventario-list1"ng-if="invElements.length != 0">
+          <ion-item ng-repeat="(key, value) in totales" style="" >{{key | uppercase}}: {{value}}</ion-item>
+        </ion-list>
+
     </ion-content>
 </ion-view>
 <!--
