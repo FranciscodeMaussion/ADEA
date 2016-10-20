@@ -30,8 +30,18 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('tabsController.economia', {
+    url: '/economy',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/economy.html',
+        controller: 'economiaCtrl'
+      }
+    }
+  })
+
   .state('tabsController', {
-    url: '/page1',
+    url: '/AEA',
     templateUrl: 'templates/tabsController.html',
     abstract:true
   })
@@ -74,7 +84,7 @@ angular.module('app.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/page1/inventory')
+$urlRouterProvider.otherwise('/AEA/inventory')
 
 
 

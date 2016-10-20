@@ -61,11 +61,6 @@ angular.module('app.controllers', [])
     }
 }])
 
-.controller('balancesCtrl', ['$scope', '$stateParams', '$state', function ($scope, $stateParams, $state) {
-
-
-}])
-
 .controller('particularCtrl', ['$scope', '$stateParams', '$state', '$rootScope', function ($scope, $stateParams, $state, $rootScope) {
   $scope.$on('$ionicView.beforeEnter', function () {
     $rootScope.categorySelected = $rootScope.categorias.filter(function (items) {return items.id == $stateParams.catId;})[0];
@@ -197,3 +192,13 @@ angular.module('app.controllers', [])
       return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
     }
 })
+
+.controller('balancesCtrl', ['$scope', '$stateParams', '$state', function ($scope, $stateParams, $state) {
+
+
+}])
+
+.controller('economiaCtrl', ['$scope', '$stateParams', '$state', function ($scope, $stateParams, $state) {
+
+
+}])
