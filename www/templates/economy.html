@@ -1,0 +1,71 @@
+<ion-view style="" id="page3" title="Entradas y Gastos">
+    <ion-nav-buttons side="secondary">
+      <button class="button button-icon icon ion-plus" ng-click="openModal()"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header " padding="true">
+      <div class="card">
+        <h4 style="text-align:center">
+          Entradas
+        </h4>
+        <h5 style="text-align:center">
+          {{entradasTot.total}}
+        </h5>
+        <hr>
+        <div class="row">
+          <div class="col-33">
+            <h5 style="text-align:center">
+              Ganadería
+            </h5>
+            <p style="text-align:center">{{entradasTot.gan}}</p>
+          </div>
+          <div class="col-33">
+            <h5 style="text-align:center">
+              Agricultura
+            </h5>
+            <p style="text-align:center">{{entradasTot.agr}}</p>
+          </div>
+          <div class="col-33">
+            <h5 style="text-align:center">
+              Otros
+            </h5>
+            <p style="text-align:center">{{entradasTot.otr}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="text-align:center">
+          Gastos
+        </h4>
+        <h5 style="text-align:center">
+          {{gastosTot}}
+        </h5>
+      </div>
+      <div class="card">
+        <h3 style="text-align:center">
+          Total
+        </h3>
+        <h4 style="text-align:center">
+          {{total}}
+        </h4>
+      </div>
+    </ion-content>
+</ion-view>
+
+<script id="ent-gast.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-{{act.colors}}">
+      <div class="buttons">
+        <button class="button button-icon icon ion-close" ng-click="closeModal()"></button>
+      </div>
+      <h1 class="title">{{act.titles}}</h1>
+      <div class="buttons">
+        <button class="button button-icon icon ion-arrow-{{act.ic}}-b" ng-click="changeAll()"></button>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <formly-form class="list" fields="fieldsForm" model="modelForm">
+          <button class="button button-{{act.colors}}  button-block button-outline" ng-click="saveThis(act.colors)">Guardar</button>
+      </formly-form>
+    </ion-content>
+  </ion-modal-view>
+</script>

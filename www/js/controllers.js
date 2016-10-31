@@ -198,7 +198,231 @@ angular.module('app.controllers', [])
 
 }])
 
-.controller('economiaCtrl', ['$scope', '$stateParams', '$state', function ($scope, $stateParams, $state) {
-
-
+.controller('economiaCtrl', ['$scope', '$stateParams', '$state', '$ionicModal', function ($scope, $stateParams, $state, $ionicModal) {
+  entrada = {
+    'tipo' : '',
+    'descripcion' : '',
+    'unidad' : '',
+    'cantidad' : 0,
+    'valor': 0,
+    'observacion' : ''
+  };
+  gasto = {
+    'descripcion' : '',
+    'unidad' : '',
+    'cantidad' : 0,
+    'valor': 0,
+  };
+  eFields = [
+    {
+      key: 'tipo',
+      type: 'select',
+      templateOptions:{
+        label: 'Tipo de entrada',
+        options: [
+          {
+            "name": "Ganadería",
+            "value": "gan"
+          },
+          {
+            "name": "Agricultura",
+            "value": "agr"
+          },
+          {
+            "name": "Otros",
+            "value": "otr"
+          },
+        ],
+        placeholder: 'Selecione el tipo de entrada'
+      }
+    },
+    {
+      key:'descripcion',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'text',
+        label: 'Descripcion'
+      }
+    },
+    {
+      key:'unidad',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'text',
+        label: 'Unidad'
+      }
+    },
+    {
+      key:'cantidad',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'number',
+        label: 'Cantidad'
+      }
+    },
+    {
+      key:'valor',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'number',
+        label: 'Valor Unitario'
+      }
+    }
+  ];
+  gFields = [
+    {
+      key:'descripcion',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'text',
+        label: 'Descripcion'
+      }
+    },
+    {
+      key:'unidad',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'text',
+        label: 'Unidad'
+      }
+    },
+    {
+      key:'cantidad',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'number',
+        label: 'Cantidad'
+      }
+    },
+    {
+      key:'valor',
+      type: 'inline-input',
+      templateOptions:{
+        type: 'number',
+        label: 'Valor Unitario'
+      }
+    }
+  ];
+  $scope.act = {
+    'colors':'balanced',
+    'titles':'Nueva Entrada',
+    'ic':'down',
+  }
+  $scope.fieldsForm = eFields;
+  $scope.modelForm = entrada;
+  $scope.$on('$ionicView.beforeEnter', function () {
+    calculate();
+  });
+  function calculate(){
+    $scope.gastosTot = 0;
+    $scope.entradasTot = {
+      'gan':0,
+      'agr':0,
+      'otr':0,
+      'total':0,
+    };
+    $scope.total = 0
+    console.log($scope.total + '=' + $scope.entradasTot.total + '-' + $scope.gastosTot);
+    aux = window.localStorage.getItem("gastos");
+    if( aux !== undefined){
+      gastos = JSON.parse(aux);
+      for (i = 0; i < gastos.length; i++){
+        console.log( gastos[i].valor + '+' + gastos[i].cantidad);
+        $scope.gastosTot += gastos[i].valor * gastos[i].cantidad;
+      }
+    }
+    aux = window.localStorage.getItem("entradas");
+    if( aux !== undefined){
+      entradas = JSON.parse(aux);
+      var tot = 0;
+      for (j = 0; j < entradas.length; j++){
+        tot = entradas[j].valor * entradas[j].cantidad;
+        console.log(tot);
+        $scope.entradasTot.total += tot;
+        if (entradas[j].tipo == 'gan'){
+          $scope.entradasTot.gan += tot;
+        } else if (entradas[j].tipo == 'agr'){
+          $scope.entradasTot.agr += tot;
+        } else if (entradas[j].tipo == 'otr'){
+          $scope.entradasTot.otr += tot;
+        }
+      }
+    }
+    $scope.total = $scope.entradasTot.total - $scope.gastosTot;
+    console.log($scope.total + '=' + $scope.entradasTot.total + '-' + $scope.gastosTot);
+  }
+  $ionicModal.fromTemplateUrl('ent-gast.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  $scope.changeAll = function() {
+    if ($scope.act.colors == 'assertive'){
+      $scope.act.colors = 'balanced';
+      $scope.act.titles = 'Nueva Entrada';
+      $scope.act.ic = 'down';
+      $scope.fieldsForm = eFields;
+      $scope.modelForm = entrada;
+    }else if ($scope.act.colors == 'balanced'){
+      $scope.act.colors = 'assertive';
+      $scope.act.titles = 'Nuevo Gasto';
+      $scope.act.ic = 'up';
+      $scope.fieldsForm = gFields;
+      $scope.modelForm = gasto;
+    }
+  };
+  $scope.saveThis = function(color) {
+    if (color == 'assertive'){
+      aux = window.localStorage.getItem("gastos");
+      if( aux !== undefined){
+        items = JSON.parse(aux);
+      }
+      try{
+          $scope.modelForm.id = items[items.length-1].id+1;
+          items.push($scope.modelForm);
+      }catch(TypeError){
+          items = [];
+          $scope.modelForm.id = 0;
+          items.push($scope.modelForm);
+      }
+      window.localStorage.setItem("gastos", JSON.stringify(items));
+      gasto = {
+        'descripcion' : '',
+        'unidad' : '',
+        'cantidad' : 0,
+        'valor': 0,
+      };
+    }else if (color == 'balanced'){
+      aux = window.localStorage.getItem("entradas");
+      if( aux !== undefined){
+        items = JSON.parse(aux);
+      }
+      try{
+          $scope.modelForm.id = items[items.length-1].id+1;
+          items.push($scope.modelForm);
+      }catch(TypeError){
+          items = [];
+          $scope.modelForm.id = 0;
+          items.push($scope.modelForm);
+      }
+      window.localStorage.setItem("entradas", JSON.stringify(items));
+      entrada = {
+        'tipo' : '',
+        'descripcion' : '',
+        'unidad' : '',
+        'cantidad' : 0,
+        'valor': 0,
+        'observacion' : ''
+      };
+    }
+    calculate();
+    $scope.modal.hide();
+  };
 }])

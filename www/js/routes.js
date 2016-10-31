@@ -23,7 +23,7 @@ angular.module('app.routes', [])
   .state('tabsController.balances', {
     url: '/balances',
     views: {
-      'tab2': {
+      'tab3': {
         templateUrl: 'templates/balances.html',
         controller: 'balancesCtrl'
       }
