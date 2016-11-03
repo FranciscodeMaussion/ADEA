@@ -17,18 +17,21 @@
               Ganadería
             </h5>
             <p style="text-align:center">{{entradasTot.gan}}</p>
+            <button class="button button-block  icon-right ion-eye col-50 col-offset-25" ng-click="showMoreInfo('gan')">Ver en Detalle</button>
           </div>
           <div class="col-33">
             <h5 style="text-align:center">
               Agricultura
             </h5>
             <p style="text-align:center">{{entradasTot.agr}}</p>
+            <button class="button button-block  icon-right ion-eye col-50 col-offset-25" ng-click="showMoreInfo('agr')">Ver en Detalle</button>
           </div>
           <div class="col-33">
             <h5 style="text-align:center">
               Otros
             </h5>
             <p style="text-align:center">{{entradasTot.otr}}</p>
+            <button class="button button-block  icon-right ion-eye col-50 col-offset-25" ng-click="showMoreInfo('otr')">Ver en Detalle</button>
           </div>
         </div>
       </div>
@@ -39,6 +42,7 @@
         <h5 style="text-align:center">
           {{gastosTot}}
         </h5>
+        <button class="button button-block icon-right ion-eye col-33 col-offset-33" ng-click="showMoreInfo('gastos')">Ver en Detalle</button>
       </div>
       <div class="card">
         <h3 style="text-align:center">

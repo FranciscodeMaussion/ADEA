@@ -83,6 +83,15 @@ angular.module('app.routes', [])
       }
     }
   })
+  .state('tabsController.showMore', {
+    url: '/showMore/:showman',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/showMore.html',
+        controller: 'showMoreCtrl'
+      }
+    }
+  })
 
 $urlRouterProvider.otherwise('/AEA/inventory')
 

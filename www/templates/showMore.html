@@ -1,0 +1,26 @@
+<ion-view style="" title="Mas Informacion">
+    <ion-content class="has-header" padding="true">
+        <ion-list>
+          <div class="list card" ng-if="items.length == 0" style="" >
+            <div class="item">
+              <h2>No hay ningun item.</h2>
+            </div>
+          </div>
+          <div class="list card" ng-repeat="item in items">
+            <div class="item">
+              <h2>{{item.descripcion}}</h2>
+            </div>
+            <div class="item item-body">
+              <p>
+                <b>Cantidad:</b> {{item.cantidad}} {{item.unidad}}<br>
+                <b>Valor:</b> {{item.valor}}<br>
+                {{item.observacion}}
+              </p>
+              <p>
+                <a class="subdued assertive" href="#" ng-click="deleteShowMan(item.id)">Eliminar</a>
+              </p>
+            </div>
+          </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -425,4 +425,42 @@ angular.module('app.controllers', [])
     calculate();
     $scope.modal.hide();
   };
+  $scope.showMoreInfo = function(showman) {
+    $state.go('tabsController.showMore', {showman: showman});
+  };
+}])
+
+.controller('showMoreCtrl', ['$scope', '$stateParams', '$state', function ($scope, $stateParams, $state) {
+  if ($stateParams.showman == 'gastos'){
+    aux = window.localStorage.getItem("gastos");
+    if( aux !== undefined){
+      aux = JSON.parse(aux);
+    }
+    $scope.items = aux
+  }else{
+    aux = window.localStorage.getItem("entradas");
+    if( aux !== undefined){
+      aux = JSON.parse(aux);
+    }
+    $scope.items = aux.filter(function (item) {return item.tipo == $stateParams.showman;});
+  }
+  $scope.deleteShowMan = function(showman) {
+    if ($stateParams.showman == 'gastos'){
+      aux = window.localStorage.getItem("gastos");
+      if( aux !== undefined){
+        aux = JSON.parse(aux);
+      }
+      var items = aux.filter(function (item) {return item.id !== parseInt(showman);});
+      window.localStorage.setItem("gastos", JSON.stringify(items));
+      $scope.items = items;
+    }else{
+      aux = window.localStorage.getItem("entradas");
+      if( aux !== undefined){
+        aux = JSON.parse(aux);
+      }
+      var items = aux.filter(function (item) {return item.id !== parseInt(showman);});
+      window.localStorage.setItem("entradas", JSON.stringify(items));
+      $scope.items = items.filter(function (item) {return item.tipo == $stateParams.showman;});
+    }
+  }
 }])
